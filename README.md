@@ -41,3 +41,4 @@ represents the work done by a node (miner).
 
 #### Note
 PoW isn't the only algorithm existing for this purpose, but for now the most used one.
+![](https://github.com/elina-sea/Nerdesschain/blob/main/pics/Proof-of-Work.png)
