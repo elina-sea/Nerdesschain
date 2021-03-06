@@ -5,12 +5,19 @@ public class NerdessChain {
 
     // Array for storing blocks
     public static ArrayList<Block> blockchain = new ArrayList<>();
+    public static int difficulty = 5;
 
     public static void main(String[] args) {
 
         blockchain.add(new Block("This is the first block of Nerdesschain", "0"));
+        System.out.println("Mining Block 1");
+        blockchain.get(0).mineBlock(difficulty);
         blockchain.add(new Block("This is the second block of Nerdesschain", blockchain.get(blockchain.size() - 1).hash));
+        System.out.println("Mining Block 2");
+        blockchain.get(1).mineBlock(difficulty);
         blockchain.add(new Block("And this one is the third block of Nerdesschain", blockchain.get(blockchain.size() - 1).hash));
+        System.out.println("Mining Block 3");
+        blockchain.get(2).mineBlock(difficulty);
 
         // check our blockchain for validity
         System.out.println("\nBlockchain is Valid: " + isChainValid());
@@ -37,6 +44,8 @@ public class NerdessChain {
     public static Boolean isChainValid() {
         Block currentBlock;
         Block previousBlock;
+        //check if each block has a solved ( by mining ) hash
+        String hashTarget = new String(new char[difficulty]).replace('\0', '0');
 
         //loop through blockchain to check hashes for integrity
         for (int i = 1; i < blockchain.size(); i++) {
@@ -50,6 +59,11 @@ public class NerdessChain {
             //compare previous hash and registered previous hash
             if (!previousBlock.hash.equals(currentBlock.previousHash)) {
                 System.out.println("Previous Hashes not equal");
+                return false;
+            }
+            //check if hash is solved bt checking amount of 0's in the beginning
+            if(!currentBlock.hash.substring( 0, difficulty).equals(hashTarget)) {
+                System.out.println("This block hasn't been mined");
                 return false;
             }
         }
