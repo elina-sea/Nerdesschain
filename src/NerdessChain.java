@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class NerdessChain {
 
     // Array for storing blocks
-    public static ArrayList<Block> blockchain = new ArrayList<Block>();
+    public static ArrayList<Block> blockchain = new ArrayList<>();
 
     public static void main(String[] args) {
 
